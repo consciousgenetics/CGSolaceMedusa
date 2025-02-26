@@ -13,4 +13,5 @@ restartPolicyMaxRetries = 10
 [envs.production]
 PORT = "9000"
 NODE_ENV = "production"
-MEDUSA_FF_WORKFLOWS = "false" 
+MEDUSA_FF_WORKFLOWS = "false"
+NODE_OPTIONS = "--dns-result-order=ipv4first" 

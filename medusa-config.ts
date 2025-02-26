@@ -5,6 +5,9 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 console.log(`Running in ${nodeEnv} mode`)
 loadEnv(nodeEnv, process.cwd())
 
+// Force disable workflows
+process.env.MEDUSA_FF_WORKFLOWS = "false"
+
 // Get database and Redis URLs
 const DATABASE_URL = process.env.DATABASE_URL
 const REDIS_URL = process.env.REDIS_URL
@@ -38,6 +41,14 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
+    }
+  },
+  modules: {
+    eventBus: {
+      resolve: "@medusajs/event-bus-redis",
+      options: {
+        redisUrl: REDIS_URL
+      }
     }
   }
 })
