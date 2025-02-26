@@ -1,0 +1,1 @@
+web: cp .env.railway .env && yarn medusa start 
