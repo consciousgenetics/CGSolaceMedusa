@@ -4,7 +4,13 @@ buildCommand = "yarn"
 
 [deploy]
 startCommand = "yarn medusa start"
-healthcheckPath = "/health"
-healthcheckTimeout = 100
+healthcheckCommand = "yarn health"
+healthcheckPath = "/"
+healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10 
+restartPolicyMaxRetries = 10
+
+[envs.production]
+PORT = "9000"
+NODE_ENV = "production"
+MEDUSA_FF_WORKFLOWS = "false" 
